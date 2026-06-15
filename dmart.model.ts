@@ -158,6 +158,13 @@ export enum SortType {
   descending = "descending",
 }
 
+export enum JoinType {
+  left = "left",
+  right = "right",
+  inner = "inner",
+  outer = "outer",
+}
+
 /** @deprecated Use `SortType` instead. Will be removed in a future version. */
 export const SortyType = SortType;
 /** @deprecated Use `SortType` instead. Will be removed in a future version. */
@@ -168,6 +175,13 @@ export type SortyType = SortType;
 //   medium = "medium",
 //   low = "low"
 // };
+
+export type JoinQuery = {
+  join_on: string; // comma-separated "left:right" pairs, e.g. "payload.body.customer:shortname"
+  alias: string; // matched right records attach under attributes.join[alias]
+  query: QueryRequest; // the right-side sub-query
+  type?: JoinType; // join semantic; server default is left
+};
 
 export type QueryRequest = {
   type: QueryType;
@@ -190,6 +204,7 @@ export type QueryRequest = {
   limit?: number;
   offset?: number;
   aggregation_data?: AggregationType;
+  join?: Array<JoinQuery>;
 };
 
 export enum RequestType {
