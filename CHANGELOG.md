@@ -1,3 +1,10 @@
+## 5.5.0
+
+- Relicense under LGPL-3.0-or-later.
+- Upgrade dependencies to latest (axios ^1.19.0 — includes fixes for
+  known axios CVEs such as the DoS via unbounded data size,
+  CVE-2025-58754 — plus eslint 10, typescript 5.9.3, @types/node 26).
+
 ## 5.3.4
 
 - Add `Dmart.getPlugins()` for the new dmart server `GET /info/plugins`
