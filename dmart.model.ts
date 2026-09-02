@@ -47,9 +47,17 @@ export enum UserType {
   bot = "bot",
 }
 
+export enum OtpPurpose {
+  login = "login",
+  reset = "reset",
+  register = "register",
+  verifyContact = "verify-contact",
+}
+
 export interface SendOTPRequest {
   msisdn?: string;
   email?: string;
+  purpose: OtpPurpose;
 }
 
 export enum DmartScope {
@@ -64,7 +72,9 @@ export interface PasswordResetRequest {
 }
 
 export interface ConfirmOTPRequest {
-  code: string
+  code: string;
+  email?: string;
+  msisdn?: string;
 }
 
 export type LoginResponseRecord = ApiResponseRecord & {
