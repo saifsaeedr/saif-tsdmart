@@ -57,18 +57,13 @@ export enum OtpPurpose {
 export interface SendOTPRequest {
   msisdn?: string;
   email?: string;
+  shortname?: string;
   purpose: OtpPurpose;
 }
 
 export enum DmartScope {
     managed = "managed",
     public = "public",
-}
-
-export interface PasswordResetRequest {
-  msisdn?: string;
-  shortname?: string;
-  email?: string;
 }
 
 export interface ConfirmOTPRequest {

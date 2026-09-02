@@ -2,7 +2,6 @@ import type {AxiosInstance} from "axios";
 import {
     DmartScope,
     headers,
-    OtpPurpose,
     QueryType,
     SortType,
     Status,
@@ -19,7 +18,6 @@ import type {
     GetChildrenRequest,
     GetPayloadRequest,
     LoginResponse,
-    PasswordResetRequest,
     ProfileResponse,
     ProgressTicketRequest,
     QueryRequest,
@@ -615,43 +613,6 @@ export class Dmart {
             'user/otp-request',
             request,
             {headers: requestHeaders}
-        );
-        return data;
-    }
-
-    /**
-     * Sends an OTP (One-Time Password) request for login purposes
-     * @param request - Recipient information (email/msisdn) for the login OTP
-     * @param acceptLanguage - Optional language preference for the OTP message (default: null)
-     * @returns Promise resolving to ApiResponse with OTP login request result
-     */
-    public static async otpRequestLogin(
-        request: Omit<SendOTPRequest, "purpose">,
-        acceptLanguage: string | null = null
-    ) {
-        const requestHeaders = {...headers};
-        if (acceptLanguage) {
-            requestHeaders['Accept-Language'] = acceptLanguage;
-        }
-
-        const {data} = await Dmart.axiosDmartInstance.post<ApiResponse>(
-            'user/otp-request',
-            {...request, purpose: OtpPurpose.login},
-            {headers: requestHeaders}
-        );
-        return data;
-    }
-
-    /**
-     * Initiates a password reset request for a user
-     * @param request - PasswordResetRequest containing user identification for password reset
-     * @returns Promise resolving to ApiResponse with password reset request result
-     */
-    public static async passwordResetRequest(request: PasswordResetRequest) {
-        const {data} = await Dmart.axiosDmartInstance.post<ApiResponse>(
-            'user/otp-request',
-            {...request, purpose: OtpPurpose.reset},
-            {headers}
         );
         return data;
     }
